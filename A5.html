@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A5 - Formularios</title>
+</head>
+<body>
+    <script>
+        // Función para manejar el envío del formulario
+        function mostrarDatos(event) {
+            event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
+
+            var nombre = document.getElementById("nombre").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("contrasena").value;
+            var edad = document.getElementById("edad").value;
+            var pais = document.getElementById("pais").value;
+            var fechaNacimiento = document.getElementById("fecha_nacimiento").value;
+            var colorFavorito = document.getElementById("color").value;
+            var genero = document.querySelector('input[name="genero"]:checked').value;
+            var terminos = document.getElementById("terminos").checked;
+            var resultado = `
+                <h3>Datos Ingresados:</h3>
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>Correo electrónico:</strong> ${email}</p>
+                <p><strong>Contraseña:</strong> ${password}</p>
+                <p><strong>Edad:</strong> ${edad}</p>
+                <p><strong>País:</strong> ${pais}</p>
+                <p><strong>Fecha de Nacimiento:</strong> ${fechaNacimiento}</p>
+                <p><strong>Color Favorito:</strong> <span style="background-color: ${colorFavorito}; padding: 5px; color: white;">${colorFavorito}</span></p>
+                <p><strong>Género:</strong> ${genero}</p>
+                <p><strong>Términos aceptados:</strong> ${terminos ? "Sí" : "No"}</p>
+            `;
+
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+    </script>
+
+    <h1>Formulario de Registro</h1>
+        <form onsubmit="mostrarDatos(event)">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre completo" 
+               minlength="3" maxlength="50" required autocomplete="name"><br><br>
+        
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" placeholder="email@ejemplo.com" 
+               minlength="6" maxlength="20" required autocomplete="email"><br><br>
+        
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña de 6 a 20 caracteres" 
+               minlength="6" maxlength="20" required><br><br>
+        
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" placeholder="Introduce tu edad" min="1" max="120" required><br><br>
+        
+        <label for="pais">País:</label>
+        <select id="pais" name="pais" required>
+            <option value="">Selecciona tu país</option>
+            <option value="espana">España</option>
+            <option value="Londres">Londres</option>
+            <option value="mongolia">Mongolia</option>
+            <option value="marruecos">Marruecos</option>
+            <option value="EEUU">EEUU</option>
+
+        </select><br><br>
+        
+        <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
+        
+        <label for="color">Color favorito:</label>
+        <input type="color" id="color" name="color" value="#000000" required><br><br>
+        
+        <label>Género:</label><br>
+        <input type="radio" id="masculino" name="genero" value="masculino" required>
+        <label for="masculino">Masculino</label><br>
+        <input type="radio" id="femenino" name="genero" value="femenino" required>
+        <label for="femenino">Femenino</label><br><br>
+        
+        <input type="checkbox" id="terminos" name="terminos" required>
+        <label for="terminos">Acepto los términos y condiciones</label><br><br>
+
+        <input type="submit" value="Registrarse">
+    </form>
+    <div id="resultado"></div>
+</body>
+</html>
